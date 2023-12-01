@@ -2,7 +2,7 @@
   <head>
     <link rel='icon' type='image/svg+xml' href='/favicon.png'>
   </head>
-  <title>Jogo da advinhação</title>
+  <title>Jogo da adivinhação</title>
   <div class="bg">
     <h1>Advinhe o numero</h1>
     <div class="game">
@@ -55,8 +55,6 @@ async function fetchHighScores() {
     .select('*')
     .order('scores', { ascending: true })
     .limit(10);
-  console.log(data);
-
   if (error) {
     console.error(error);
   } else {
