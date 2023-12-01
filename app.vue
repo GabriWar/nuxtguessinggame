@@ -114,14 +114,14 @@ h1 {
 
 th {
   text-align: center;
-  padding-left: 90px;
-  padding-right: 90px;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 td {
   text-align: center;
-  padding-left: 90px;
-  padding-right: 90px;
+  padding-left: 5vw;
+  padding-right: 5vw;
 }
 
 a {
