@@ -6,8 +6,8 @@
   <div class="bg">
     <h1>Advinhe o numero</h1>
     <div class="game">
-      <p v-if="!gameOver">adivinhe um numero entre 0 e 1000:</p>
-      <input v-model="guess" v-if="!gameOver" type="number" min="1" max="1000" @keyup.enter="checkGuess" />
+      <p v-if="!gameOver">adivinhe um numero entre 0 e 100:</p>
+      <input v-model="guess" v-if="!gameOver" type="number" min="1" max="100" @keyup.enter="checkGuess" />
       <button v-if="!gameOver" @click="checkGuess">enter</button>
       <p v-if="gameOver">voce acertou o numero em {{ attempts }} tentativas.</p>
       <p v-if="!gameOver && higher">o número é menor</p>
@@ -15,7 +15,8 @@
       <p>tentativas: {{ attempts }}</p>
     </div>
     <input v-model="playerName" v-if="gameOver" type="text" placeholder="digite seu nome" class="input" />
-    <button v-if="gameOver" @click="sendScore">enviar pontuacao</button>
+    <button v-if="gameOver" @click="sendScore">enviar</button>
+    <p class="aviso" v-if="gameOver">sem caracteres especiais, por favor :)</p>
     <table class="table" v-if="highScores.length > 0">
       <thead>
         <tr>
@@ -79,17 +80,25 @@ function checkGuess() {
 }
 
 async function sendScore() {
-  const { data, error } = await client
+  const playerNameRegex = /^[a-zA-Z0-9\s]+$/;
+  if (!playerNameRegex.test(playerName.value)) {
+    console.error('nome invalido');
+    return;
+  }
+
+  const { error } = await client
     .from('scores')
     .insert([{ names: playerName.value, scores: attempts.value }]);
 
   if (error) {
     console.error(error);
   } else {
-    console.log('Score sent successfully');
+    console.log('score enviada');
     fetchHighScores();
+    gameOver.value = false;
   }
 }
+
 </script>
 
 <style>
@@ -133,5 +142,9 @@ a {
   bottom: 0;
   right: 0;
   position: absolute;
+}
+.aviso{
+  color: grey;
+  margin-top:10px;
 }
 </style>
