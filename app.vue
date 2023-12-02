@@ -1,9 +1,5 @@
 <template>
   <title>Jogo da adivinhação</title>
-
-  <head>
-    <link rel='icon' type='image/svg+xml' href='/favicon.png'>
-  </head>
   <div class="bg">
     <h1>Advinhe o numero</h1>
     <div class="game">
@@ -178,7 +174,7 @@ a {
 }
 .aviso1 {
   color: grey;
-  margin-top: -55px;
+  margin-top: -30px;
 }
 .aviso2 {
   color: grey;
