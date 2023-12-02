@@ -174,7 +174,7 @@ a {
 }
 .aviso1 {
   color: grey;
-  margin-top: -30px;
+  margin-top: -5px;
 }
 .aviso2 {
   color: grey;
